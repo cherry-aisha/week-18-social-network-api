@@ -9,7 +9,7 @@ const {
   removeThoughtResponse,
 } = require('../../controllers/thoughtController');
 
-// /api/videos
+// /api/thought
 router.route('/').get(getThoughts).post(createThought);
 
 // /api/Thoughts/:ThoughtId
@@ -19,10 +19,10 @@ router
   .put(updateThought)
   .delete(deleteThought);
 
-// /api/videos/:videoId/responses
+// /api/thought/:thoughtId/responses
 router.route('/:thoughtId/responses').post(addThoughtResponse);
 
-// /api/videos/:videoId/responses/:responseId
+// /api/thought/:thoughtId/responses/:responseId
 router.route('/:thoughtId/responses/:responseId').delete(removeThoughtResponse);
 
 module.exports = router;
