@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const {
-  getVideos,
+  getThoughts,
   getSingleThought,
   createThought,
   updateThought,
