@@ -10,9 +10,9 @@ const {
 } = require('../../controllers/thoughtController');
 
 // /api/videos
-router.route('/').get(getVideos).post(createVideo);
+router.route('/').get(getThoughts).post(createThought);
 
-// /api/videos/:videoId
+// /api/Thoughts/:ThoughtId
 router
   .route('/:thoughtId')
   .get(getSingleThought)
@@ -20,9 +20,9 @@ router
   .delete(deleteThought);
 
 // /api/videos/:videoId/responses
-router.route('/:videoId/responses').post(addVideoResponse);
+router.route('/:thoughtId/responses').post(addThoughtResponse);
 
 // /api/videos/:videoId/responses/:responseId
-router.route('/:videoId/responses/:responseId').delete(removeVideoResponse);
+router.route('/:thoughtId/responses/:responseId').delete(removeThoughtResponse);
 
 module.exports = router;
