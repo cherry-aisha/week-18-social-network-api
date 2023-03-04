@@ -24,23 +24,13 @@ module.exports = {
   },
   // delete a user
   deleteUser(req, res) {
-    User.findOneAndRemove({ _id: req.params.userId })
+    User.findOneAndDelete({ _id: req.params.userId })
       .then((user) =>
         !user
-          ? res.status(404).json({ message: 'No user with this id!' })
-          : User.findOneAndUpdate(
-              { users: req.params.userId },
-              { $pull: { users: req.params.userId } },
-              { new: true }
-            )
+          ? res.status(404).json({ message: 'No user with that ID' })
+          : Application.deleteMany({ _id: { $in: user.applications } })
       )
-      .then((user) =>
-        !user
-          ? res
-              .status(404)
-              .json({ message: 'User created but no user with this id!' })
-          : res.json({ message: 'User successfully deleted!' })
-      )
+      .then(() => res.json({ message: 'User and associated apps deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
 };

@@ -1,7 +1,7 @@
 {
-  "name": "25-Ins_Mongoose-CRUD",
+  "name": "social-network-api",
   "version": "1.0.1",
-  "description": "Instructor demo for CRUD operations in Mongoose on subdocuments",
+  "description": "Social network back end",
   "main": "server.js",
   "license": "MIT",
   "scripts": {
