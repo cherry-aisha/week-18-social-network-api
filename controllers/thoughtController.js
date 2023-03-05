@@ -1,4 +1,4 @@
-const { Thought, User } = require('../models/Thought');
+const { Thought, User } = require('../models/');
 
 module.exports = {
 
@@ -20,6 +20,14 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+
+  // create a new thought
+  createThought(req, res) {
+    Thought.create(req.body)
+      .then((dbThoughtData) => res.json(dbThoughtData))
+      .catch((err) => res.status(500).json(err));
+  },
+
   // create a new thought
   createThought(req, res) {
     Thought.create(req.body)
