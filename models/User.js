@@ -6,6 +6,7 @@ const userSchema = new Schema(
     first: String,
     last: String,
     age: Number,
+    username: String,
     thoughts: [
       {
         type: Schema.Types.ObjectId,

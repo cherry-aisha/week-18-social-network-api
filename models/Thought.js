@@ -17,7 +17,7 @@ const thoughtSchema = new Schema(
     },
     username: {
       type: String,
-      default: true,
+      required: true,
     },
     reactions:
       [reactionSchema]
@@ -35,7 +35,7 @@ thoughtSchema
   .virtual('reactionCount')
   // Getter
   .get(function () {
-    return this.reactions.length;
+    return `${this.thoughtBody} ${this.createdAt} ${this.username} ${this.reactions}`;
   });
 
 // Initialize our Thought model
