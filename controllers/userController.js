@@ -51,5 +51,36 @@ module.exports = {
       )
       .then(() => res.json({ message: 'User and associated apps deleted!' }))
       .catch((err) => res.status(500).json(err));
+  },
+
+  //adds a friend to the friends list
+  addFriend(req, res) {
+    User.findOneAndUpdate({ _id: req.params.userId }, { $pull: { friends: req.params.friendId }}, { new: true })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        return res.status(404).json({ message: 'No user with this id found!' });
+      }
+      res.json(dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    })
+  },
+  //removes a friend to the friends list
+  removeFriend(req, res) {
+    User.findOneAndUpdate({ _id: req.params.userId }, { $pull: { friends: req.params.friendId }}, { new: true })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        return res.status(404).json({ message: 'No user with this id found!' });
+      }
+      res.json(dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
   }
 };
+
+module.exports = userController;
