@@ -4,6 +4,7 @@ const dateFormat = require('../utils/dateFormat')
 
 // Schema to create Post model
 const thoughtSchema = new Schema(
+
   {
     thoughtBody: {
       type: String,
