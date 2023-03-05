@@ -12,7 +12,7 @@ module.exports = {
 
   // get single thought
   getSingleThought(req, res) {
-    Thought.findOne({ _id: req.params.thoughtId })
+    Thought.findOne({ username: req.params.thoughtId })
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
@@ -24,16 +24,9 @@ module.exports = {
   // create a new thought
   createThought(req, res) {
     Thought.create(req.body)
-      .then((dbThoughtData) => res.json(dbThoughtData))
-      .catch((err) => res.status(500).json(err));
-  },
-
-  // create a new thought
-  createThought(req, res) {
-    Thought.create(req.body)
       .then((thought) => {
         return User.findOneAndUpdate(
-          { _id: req.body.userId },
+          { username: req.body.username },
           { $addToSet: { thoughts: thought._id } },
           { new: true }
         );
@@ -41,7 +34,7 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({
-              message: 'Thought created, but found no user with that ID',
+              message: 'Found no user with that ID',
             })
           : res.json('Created the Thought 🎉')
       )
