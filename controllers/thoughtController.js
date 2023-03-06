@@ -83,6 +83,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
+  
   // Add a Thought response
   addThoughtResponse(req, res) {
     Thought.findOneAndUpdate(
