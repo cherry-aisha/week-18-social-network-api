@@ -78,7 +78,7 @@ module.exports = {
         !user
           ? res
               .status(404)
-              .json({ message: 'Thought created but no user with this id!' })
+              .json({ message: 'Thought deleted' })
           : res.json({ message: 'Thought successfully deleted!' })
       )
       .catch((err) => res.status(500).json(err));
